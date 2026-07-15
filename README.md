@@ -161,6 +161,10 @@ Você deverá desenvolver um projeto de sistemas embarcados simulados, utilizand
 
 > Você pode expandir essa estrutura se desejar, desde que mantenha os arquivos essenciais.
 
+### Escolha do cenário
+
+No diretório "scenarios" existem arquivos .md e pastas referentes a diferentes desafios. Selecione apenas um deles e mantenha apenas a pasta e .md referente ao desafio a ser desenvolvido, deletando os demais. Isso fará com o que o fluxo de testes automáticos selecione o fluxo de acordo com o desafio escolhido.
+
 ### Como Desenvolver seu Projeto
 
 O desenvolvimento acontece principalmente nos arquivos abaixo:
