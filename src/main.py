@@ -31,7 +31,7 @@ def reseta_turno(leitura_btn):
         peca_em_transito = False
         alerta_parada_disparado = False
         tempo_inicio_bloqueio = 0
-        print("Turno resetado com sucesso. Contadores zerados.")
+        print('Turno resetado com sucesso. Contadores zerados.')
 
     # atualiza a memoria do ultimo estado 
     ultimo_estado_btn = leitura_btn
