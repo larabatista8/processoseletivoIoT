@@ -45,7 +45,7 @@ LIMIAR_BLOQUEIO = 1800     # valor para lux baixo
 LIMIAR_LIVRE = 1000        # valor para  lux alto
 TEMPO_PARADA_MS = 5000     # 5 segundos para alerta de micro-parada
 
-#variaveis para ajudar a analisar o movimento da esteira
+#variaveis para ajudar a analisar o movimento da esteira 
 total_pecas = 0
 peca_em_transito = False
 tempo_inicio_bloqueio = 0
