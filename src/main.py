@@ -23,10 +23,13 @@ def detecta_peca(leitura_ldr, tempo_atual):
 
 
 def reseta_turno(leitura_btn, tempo_atual):
-    global ultimo_estado_btn, ultimo_tempo_btn, total_pecas, peca_em_transito, alerta_parada_disparado
+    global ultimo_estado_btn, ultimo_tempo_btn, total_pecas, peca_em_transito, alerta_parada_disparado, reset_executado
     if leitura_btn != ultimo_estado_btn:
         ultimo_tempo_btn = tempo_atual
         ultimo_estado_btn = leitura_btn
+        # libera para o proxino reset quando o botoao é solto
+        if leitura_btn == 1:
+            reset_executado = False
 
     if time.ticks_diff(tempo_atual, ultimo_tempo_btn) > 50:
         if leitura_btn == 0 and ultimo_estado_btn == 0:  
@@ -34,6 +37,9 @@ def reseta_turno(leitura_btn, tempo_atual):
             peca_em_transito = False
             alerta_parada_disparado = False
             print("Turno resetado com sucesso. Contadores zerados.")
+
+    # recebe true para nao repetir no próximo ciclo  while
+    reset_executado = True
 
 #configuracao dos pinos
 ldr_pino = ADC(Pin(34))
@@ -54,6 +60,7 @@ alerta_parada_disparado= False
 # debounce do botao
 ultimo_estado_btn = 1
 ultimo_tempo_btn = 0
+reset_executado = False
 
 print("Contador de Producao Inicializado")
 
