@@ -22,24 +22,18 @@ def detecta_peca(leitura_ldr, tempo_atual):
             peca_em_transito = False
 
 
-def reseta_turno(leitura_btn, tempo_atual):
-    global ultimo_estado_btn, ultimo_tempo_btn, total_pecas, peca_em_transito, alerta_parada_disparado, reset_executado
-    if leitura_btn != ultimo_estado_btn:
-        ultimo_tempo_btn = tempo_atual
-        ultimo_estado_btn = leitura_btn
-        # libera para o proxino reset quando o botoao é solto
-        if leitura_btn == 1:
-            reset_executado = False
+def reseta_turno(leitura_btn):
+    global ultimo_estado_btn, total_pecas, peca_em_transito, alerta_parada_disparado
 
-    if time.ticks_diff(tempo_atual, ultimo_tempo_btn) > 50:
-        if leitura_btn == 0 and ultimo_estado_btn == 0:  
-            total_pecas = 0
-            peca_em_transito = False
-            alerta_parada_disparado = False
-            print("Turno resetado com sucesso. Contadores zerados.")
+    # detecta o momento em que mudou de 1 para 0 
+    if ultimo_estado_btn == 1 and leitura_btn == 0:
+        total_pecas = 0
+        peca_em_transito = False
+        alerta_parada_disparado = False
+        print("Turno resetado com sucesso. Contadores zerados.")
 
-    # recebe true para nao repetir no próximo ciclo  while
-    reset_executado = True
+    # atualiza a memoria do ultimo estado 
+    ultimo_estado_btn = leitura_btn
 
 #configuracao dos pinos
 ldr_pino = ADC(Pin(34))
@@ -69,6 +63,6 @@ while True:
     leitura_ldr = ldr_pino.read()
     leitura_btn = btn_pino.value()
     detecta_peca(leitura_ldr, tempo_atual)
-    reseta_turno(leitura_btn, tempo_atual)
+    reseta_turno(leitura_btn)
     #tempo para estabilidade
     time.sleep_ms(10)  
