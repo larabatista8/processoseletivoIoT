@@ -25,13 +25,14 @@ def detecta_peca(leitura_ldr, tempo_atual):
 def reseta_turno(leitura_btn):
     global ultimo_estado_btn, total_pecas, peca_em_transito, alerta_parada_disparado, tempo_inicio_bloqueio
 
-    # detecta o momento em que mudou de 1 para 0 
-    if ultimo_estado_btn == 1 and leitura_btn == 0:
+    # detecta o momento em que botao é solto 
+    if ultimo_estado_btn == 0 and leitura_btn == 1:
         total_pecas = 0
         peca_em_transito = False
         alerta_parada_disparado = False
         tempo_inicio_bloqueio = 0
         print('Turno resetado com sucesso. Contadores zerados.')
+        
 
     # atualiza a memoria do ultimo estado 
     ultimo_estado_btn = leitura_btn
